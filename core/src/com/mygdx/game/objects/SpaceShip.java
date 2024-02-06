@@ -1,29 +1,29 @@
-package com.mygdx.game;
+package com.mygdx.game.objects;
 
 import static com.mygdx.game.GameSettings.SHOOTING_COOL_DOWN;
 import static com.mygdx.game.GameSettings.SPACE_SHIP_BIT;
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.objects.GameObject;
 
 public class SpaceShip extends GameObject {
 
-    int lifeLeft;
+    public int lifeLeft;
     long lastShotTime;
     boolean isShootingAvailable = true;
 
-    SpaceShip(float x, float y, World world) {
+    public SpaceShip(float x, float y, World world) {
         super("ship.png", x, y, 150 * SCALE, 150 * SCALE, SPACE_SHIP_BIT, world);
         body.setLinearDamping(2);
         lifeLeft = 3;
         lastShotTime = TimeUtils.millis();
     }
 
-    void move(Vector3 vector3) {
+    public void move(Vector3 vector3) {
 
         body.applyForceToCenter(new Vector2((vector3.x - body.getPosition().x) * 40,
                 (vector3.y - body.getPosition().y) * 40), true);
@@ -74,7 +74,7 @@ public class SpaceShip extends GameObject {
 
     }
 
-    boolean needToShoot() {
+    public boolean needToShoot() {
         if (isShootingAvailable && TimeUtils.millis() - lastShotTime >= SHOOTING_COOL_DOWN) {
             lastShotTime = TimeUtils.millis();
             return true;
@@ -82,7 +82,7 @@ public class SpaceShip extends GameObject {
         return false;
     }
 
-    void hit() {
+    public void hit() {
         lifeLeft -= 1;
     }
 

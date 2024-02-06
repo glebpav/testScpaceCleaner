@@ -1,6 +1,6 @@
 package com.mygdx.game;
 
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

@@ -10,7 +10,7 @@ public class GameSession {
     long nextEnemySpawnTime;
     long sessionStartTime;
 
-    GameSession() {
+    public GameSession() {
 
     }
 

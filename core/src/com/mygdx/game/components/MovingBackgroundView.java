@@ -1,18 +1,18 @@
-package com.mygdx.game;
+package com.mygdx.game.components;
 
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
-public class MovingBackground {
+public class MovingBackgroundView {
 
     Texture texture;
 
     float texture1Y, texture2Y;
     float speed = 0.06f;
 
-    public MovingBackground(String pathToTexture) {
+    public MovingBackgroundView(String pathToTexture) {
         texture1Y = 0;
         texture2Y = 1280 * SCALE;
         texture = new Texture(pathToTexture);

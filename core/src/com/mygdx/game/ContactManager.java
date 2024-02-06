@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.objects.LaserBullet;
+import com.mygdx.game.objects.SpaceShip;
+import com.mygdx.game.objects.TrashObject;
 
 public class ContactManager {
 

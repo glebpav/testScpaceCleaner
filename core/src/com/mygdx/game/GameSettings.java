@@ -4,6 +4,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameSettings {
 
+    // Physics settings
+
+    public static final float STEP_TIME = 1f / 60f;
+    public static final int VELOCITY_ITERATIONS = 6;
+    public static final int POSITION_ITERATIONS = 6;
+    public static final float SCALE = 0.05f;
+
+
     public static int SHOOTING_COOL_DOWN = 1000; // in [ms] - milliseconds
     public static int BULLET_VELOCITY = 20; // in [m/s] - meter per second
 

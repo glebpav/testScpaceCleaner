@@ -1,12 +1,19 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.ContactManager;
+import com.mygdx.game.GameSession;
+import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.components.*;
+import com.mygdx.game.objects.LaserBullet;
+import com.mygdx.game.objects.SpaceShip;
+import com.mygdx.game.objects.TrashObject;
 
 import java.util.ArrayList;
 
@@ -20,8 +27,9 @@ public class GameScreen extends ScreenAdapter {
 
     LifeView lifeView;
     ImageView topBlackout;
-    MovingBackground movingBackground;
+    MovingBackgroundView movingBackgroundView;
     TextView scoreTextView;
+    TextButtonView pauseButton;
 
     ContactManager contactManager;
 
@@ -36,8 +44,9 @@ public class GameScreen extends ScreenAdapter {
 
         lifeView = new LifeView(305 * SCALE, 1215 * SCALE);
         topBlackout = new ImageView(0, 1180 * SCALE, "top_blackout.png");
-        movingBackground = new MovingBackground("background1.png");
+        movingBackgroundView = new MovingBackgroundView("background1.png");
         scoreTextView = new TextView(myGdxGame.commonWhiteFont, 50 * SCALE, 1215 * SCALE);
+        pauseButton = new TextButtonView(510 * SCALE, 1195 * SCALE, 160 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Pause");
     }
 
     @Override
@@ -76,13 +85,14 @@ public class GameScreen extends ScreenAdapter {
 
         myGdxGame.batch.begin();
 
-        movingBackground.draw(myGdxGame.batch);
+        movingBackgroundView.draw(myGdxGame.batch);
         spaceShip.draw(myGdxGame.batch);
         bulletsArray.forEach(laserBullet -> laserBullet.draw(myGdxGame.batch));
         trashArray.forEach(trashObject -> trashObject.draw(myGdxGame.batch));
         topBlackout.draw(myGdxGame.batch);
         lifeView.draw(spaceShip.lifeLeft, myGdxGame.batch);
         scoreTextView.draw("Score: " + 50, myGdxGame.batch);
+        pauseButton.draw(myGdxGame.batch);
 
         myGdxGame.batch.end();
 
@@ -90,7 +100,7 @@ public class GameScreen extends ScreenAdapter {
 
         updateTrash();
         updateBullets();
-        movingBackground.move();
+        movingBackgroundView.move();
 
     }
 

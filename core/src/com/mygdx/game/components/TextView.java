@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.components;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -12,18 +12,18 @@ public class TextView {
 
     BitmapFont font;
 
-    TextView(BitmapFont font, float x, float y) {
+    public TextView(BitmapFont font, float x, float y) {
         this.font = font;
         this.x = x;
         this.y = y;
     }
 
-    void draw(String text, SpriteBatch batch) {
+    public void draw(String text, SpriteBatch batch) {
         GlyphLayout glyphLayout = new GlyphLayout(font, text);
         font.draw(batch, text, x, y + glyphLayout.height);
     }
 
-    void dispose() {
+    public void dispose() {
         font.dispose();
     }
 

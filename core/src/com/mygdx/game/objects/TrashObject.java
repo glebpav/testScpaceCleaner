@@ -1,12 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.objects;
 
-import static com.mygdx.game.GameSettings.BULLET_VELOCITY;
-import static com.mygdx.game.GameSettings.LASER_BULLET_BIT;
 import static com.mygdx.game.GameSettings.TRASH1_BIT;
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.objects.GameObject;
 
 import java.util.Random;
 

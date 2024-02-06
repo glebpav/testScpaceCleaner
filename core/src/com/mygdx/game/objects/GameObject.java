@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,10 +14,10 @@ public class GameObject {
 
     public short cBits = 0;
 
-    float width;
-    float height;
+    public float width;
+    public float height;
 
-    Body body;
+    public Body body;
     Texture texture;
 
     GameObject(String texturePath, float x, float y, float width, float height, short cBits, World world) {
@@ -29,7 +29,7 @@ public class GameObject {
         body = createBody(x, y, world);
     }
 
-    void draw(SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
         batch.draw(texture,
                 body.getPosition().x - (width / 2f),
                 body.getPosition().y - (height / 2f),
@@ -37,11 +37,11 @@ public class GameObject {
                 height);
     }
 
-    boolean isHit() {
+    public boolean isHit() {
         return false;
     }
 
-    void move() {
+    public void move() {
 
     }
 

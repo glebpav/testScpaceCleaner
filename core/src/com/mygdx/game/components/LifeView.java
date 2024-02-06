@@ -1,6 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.components;
 
-import static com.mygdx.game.MyGdxGame.SCALE;
+import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,7 +15,7 @@ public class LifeView {
 
     Texture texture;
 
-    LifeView(float x, float y) {
+    public LifeView(float x, float y) {
         this.x = x;
         this.y = y;
         texture = new Texture("life.png");
@@ -23,13 +23,13 @@ public class LifeView {
         this.height = texture.getHeight() * SCALE;
     }
 
-    void draw(int leftLive, SpriteBatch batch) {
+    public void draw(int leftLive, SpriteBatch batch) {
         if (leftLive > 0) batch.draw(texture, x + (texture.getWidth() + 6) * SCALE, y, width, height);
         if (leftLive > 1) batch.draw(texture, x, y, width, height);
         if (leftLive > 2) batch.draw(texture, x + 2 * (texture.getWidth() + 6) * SCALE, y, width, height);
     }
 
-    void dispose() {
+    public void dispose() {
         texture.dispose();
     }
 

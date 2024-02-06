@@ -1,9 +1,9 @@
-package com.mygdx.game;
-
-import static com.mygdx.game.MyGdxGame.SCALE;
+package com.mygdx.game.components;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import static com.mygdx.game.GameSettings.SCALE;
 
 public class ImageView {
 
@@ -15,7 +15,7 @@ public class ImageView {
 
     Texture texture;
 
-    ImageView(float x, float y, String imagePath) {
+    public ImageView(float x, float y, String imagePath) {
         this.x = x;
         this.y = y;
         texture = new Texture(imagePath);
@@ -23,11 +23,11 @@ public class ImageView {
         this.height = texture.getHeight() * SCALE;
     }
 
-    void draw(SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
         batch.draw(texture, x, y, width, height);
     }
 
-    void dispose() {
+    public void dispose() {
         texture.dispose();
     }
 
