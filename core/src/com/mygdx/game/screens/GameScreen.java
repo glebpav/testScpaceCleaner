@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.ContactManager;
 import com.mygdx.game.GameSession;
+import com.mygdx.game.GameState;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.components.*;
 import com.mygdx.game.objects.LaserBullet;
@@ -31,6 +32,11 @@ public class GameScreen extends ScreenAdapter {
     TextView scoreTextView;
     TextButtonView pauseButton;
 
+    ImageView fullBlackoutView;
+    TextView pauseTextView;
+    TextButtonView homeButton;
+    TextButtonView continueButton;
+
     ContactManager contactManager;
 
     public GameScreen(MyGdxGame myGdxGame) {
@@ -47,6 +53,11 @@ public class GameScreen extends ScreenAdapter {
         movingBackgroundView = new MovingBackgroundView("background1.png");
         scoreTextView = new TextView(myGdxGame.commonWhiteFont, 50 * SCALE, 1215 * SCALE);
         pauseButton = new TextButtonView(510 * SCALE, 1195 * SCALE, 160 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Pause");
+
+        fullBlackoutView = new ImageView(0, 0, "blackout_full.png");
+        pauseTextView = new TextView(myGdxGame.largeWhiteFont, 245 * SCALE,842 * SCALE, "Pause");
+        homeButton = new TextButtonView(138 * SCALE, 695 * SCALE, 200 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Home");
+        continueButton = new TextButtonView(393 * SCALE, 695 * SCALE, 200 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Continue");
     }
 
     @Override
@@ -55,53 +66,38 @@ public class GameScreen extends ScreenAdapter {
         gameSession.startGame();
     }
 
-    @SuppressWarnings("NewApi")
+
     @Override
     public void render(float delta) {
 
-        if (Gdx.input.isTouched()) {
-            myGdxGame.touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
-            spaceShip.move(myGdxGame.touch);
+        handleInput();
+
+        if (gameSession.state == GameState.PLAYING) {
+            updateTrash();
+            updateBullets();
+            movingBackgroundView.move();
+            myGdxGame.stepWorld();
+
+            if (gameSession.shouldSpawnTrash()) {
+                TrashObject trashObject = new TrashObject(myGdxGame.world);
+                trashArray.add(trashObject);
+            }
+
+            if (spaceShip.needToShoot()) {
+                LaserBullet laserBullet = new LaserBullet(
+                        spaceShip.body.getPosition().x,
+                        (spaceShip.body.getPosition().y + spaceShip.height / 2),
+                        myGdxGame.world
+                );
+                bulletsArray.add(laserBullet);
+            }
+
+            if (!spaceShip.isAlive()) {
+                gameSession.endGame();
+            }
         }
 
-        if (gameSession.shouldSpawnTrash()) {
-            TrashObject trashObject = new TrashObject(myGdxGame.world);
-            trashArray.add(trashObject);
-        }
-
-        if (spaceShip.needToShoot()) {
-            LaserBullet laserBullet = new LaserBullet(
-                    spaceShip.body.getPosition().x,
-                    (spaceShip.body.getPosition().y + spaceShip.height / 2),
-                    myGdxGame.world
-            );
-            bulletsArray.add(laserBullet);
-        }
-
-        myGdxGame.camera.update();
-        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
-        ScreenUtils.clear(Color.CLEAR);
-        myGdxGame.stepWorld();
-
-        myGdxGame.batch.begin();
-
-        movingBackgroundView.draw(myGdxGame.batch);
-        spaceShip.draw(myGdxGame.batch);
-        bulletsArray.forEach(laserBullet -> laserBullet.draw(myGdxGame.batch));
-        trashArray.forEach(trashObject -> trashObject.draw(myGdxGame.batch));
-        topBlackout.draw(myGdxGame.batch);
-        lifeView.draw(spaceShip.lifeLeft, myGdxGame.batch);
-        scoreTextView.draw("Score: " + 50, myGdxGame.batch);
-        pauseButton.draw(myGdxGame.batch);
-
-        myGdxGame.batch.end();
-
-        myGdxGame.debugRenderer.render(myGdxGame.world, myGdxGame.camera.combined);
-
-        updateTrash();
-        updateBullets();
-        movingBackgroundView.move();
-
+        draw();
     }
 
     private void updateTrash() {
@@ -120,6 +116,56 @@ public class GameScreen extends ScreenAdapter {
                 bulletsArray.remove(i--);
             }
         }
+    }
+
+    private void handleInput() {
+        if (Gdx.input.isTouched()) {
+            myGdxGame.touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+
+            if (gameSession.state == GameState.PAUSED) {
+                if (continueButton.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                    gameSession.resumeGame();
+                }
+            }
+
+            if (gameSession.state == GameState.PLAYING) {
+                if (pauseButton.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                    gameSession.pauseGame();
+                }
+                spaceShip.move(myGdxGame.touch);
+            }
+        }
+    }
+
+    @SuppressWarnings("NewApi")
+    private void draw() {
+        myGdxGame.camera.update();
+        myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
+        ScreenUtils.clear(Color.CLEAR);
+
+        myGdxGame.batch.begin();
+
+        movingBackgroundView.draw(myGdxGame.batch);
+        spaceShip.draw(myGdxGame.batch);
+        bulletsArray.forEach(laserBullet -> laserBullet.draw(myGdxGame.batch));
+        trashArray.forEach(trashObject -> trashObject.draw(myGdxGame.batch));
+        topBlackout.draw(myGdxGame.batch);
+        lifeView.draw(spaceShip.lifeLeft, myGdxGame.batch);
+        scoreTextView.draw("Score: " + 50, myGdxGame.batch);
+        pauseButton.draw(myGdxGame.batch);
+
+        if (gameSession.state == GameState.PAUSED) {
+            fullBlackoutView.draw(myGdxGame.batch);
+            pauseTextView.draw(myGdxGame.batch);
+            homeButton.draw(myGdxGame.batch);
+            continueButton.draw(myGdxGame.batch);
+        } else if (gameSession.state == GameState.ENDED) {
+
+        }
+
+        myGdxGame.batch.end();
+
+        myGdxGame.debugRenderer.render(myGdxGame.world, myGdxGame.camera.combined);
     }
 
     @Override

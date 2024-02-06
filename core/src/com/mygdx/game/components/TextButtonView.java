@@ -39,8 +39,8 @@ public class TextButtonView {
         float textWidth = glyphLayout.width;
         float textHeight = glyphLayout.height;
 
-        textX = x + (texture.getWidth() * SCALE - textWidth) / 2;
-        textY = y + (texture.getHeight() * SCALE + textHeight) / 2;
+        textX = x + (width - textWidth) / 2;
+        textY = y + (height + textHeight) / 2;
     }
 
     public void draw(SpriteBatch batch) {

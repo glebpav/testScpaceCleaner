@@ -86,4 +86,7 @@ public class SpaceShip extends GameObject {
         lifeLeft -= 1;
     }
 
+    public boolean isAlive() {
+        return lifeLeft > 0;
+    }
 }

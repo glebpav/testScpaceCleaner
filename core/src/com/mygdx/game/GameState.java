@@ -1,7 +1,8 @@
 package com.mygdx.game;
 
-public enum GameStatus {
+public enum GameState {
     PLAYING,
+    PAUSED,
     RUSHING,
     ENDED
 }

@@ -39,9 +39,9 @@ public class MyGdxGame extends Game {
         debugRenderer = new Box2DDebugRenderer();
         world = new World(new Vector2(0, 0), true);
 
-        largeWhiteFont = FontBuilder.generate(48, Color.WHITE, "montserrat-bold.ttf");
-        commonWhiteFont = FontBuilder.generate(100, Color.WHITE, "montserrat-bold.ttf");
-        commonBlackFont = FontBuilder.generate(100, Color.BLACK, "montserrat-bold.ttf");
+        largeWhiteFont = FontBuilder.generate(200, Color.WHITE, "spaceagecyrillic_regular.ttf");
+        commonWhiteFont = FontBuilder.generate(100, Color.WHITE, "spaceagecyrillic_regular.ttf");
+        commonBlackFont = FontBuilder.generate(100, Color.BLACK, "spaceagecyrillic_regular.ttf");
 
 
         gameScreen = new GameScreen(this);

@@ -11,6 +11,7 @@ public class TextView {
     float y;
 
     BitmapFont font;
+    String text;
 
     public TextView(BitmapFont font, float x, float y) {
         this.font = font;
@@ -18,7 +19,17 @@ public class TextView {
         this.y = y;
     }
 
+    public TextView(BitmapFont font, float x, float y, String text) {
+        this(font, x, y);
+        this.text = text;
+    }
+
     public void draw(String text, SpriteBatch batch) {
+        GlyphLayout glyphLayout = new GlyphLayout(font, text);
+        font.draw(batch, text, x, y + glyphLayout.height);
+    }
+
+    public void draw(SpriteBatch batch) {
         GlyphLayout glyphLayout = new GlyphLayout(font, text);
         font.draw(batch, text, x, y + glyphLayout.height);
     }

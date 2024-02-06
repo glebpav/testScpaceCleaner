@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameSession {
 
-    GameStatus status;
+    public GameState state;
     long nextEnemySpawnTime;
     long sessionStartTime;
 
@@ -15,10 +15,22 @@ public class GameSession {
     }
 
     public void startGame() {
-        status = GameStatus.PLAYING;
+        state = GameState.PLAYING;
         sessionStartTime = TimeUtils.millis();
         nextEnemySpawnTime = sessionStartTime + (long) (STARTING_ENEMY_APPEARANCE_COOL_DOWN * getEnemyPeriodCoolDown());
         System.out.println((TimeUtils.millis() - sessionStartTime) / 1000f + " --- " + (nextEnemySpawnTime - TimeUtils.millis()) + " --- " + (STARTING_ENEMY_APPEARANCE_COOL_DOWN * getEnemyPeriodCoolDown()));
+    }
+
+    public void pauseGame() {
+        state = GameState.PAUSED;
+    }
+
+    public void resumeGame() {
+        state = GameState.PLAYING;
+    }
+
+    public void endGame() {
+        state = GameState.ENDED;
     }
 
     public boolean shouldSpawnTrash() {
