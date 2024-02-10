@@ -10,6 +10,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
+import static com.mygdx.game.GameSettings.SCALE;
+
 public class GameObject {
 
     public short cBits = 0;
@@ -26,14 +28,14 @@ public class GameObject {
         this.cBits = cBits;
 
         texture = new Texture(texturePath);
-        body = createBody(x, y, world);
+        body = createBody(x * SCALE, y * SCALE, world);
     }
 
     public void draw(SpriteBatch batch) {
         batch.draw(texture,
-                body.getPosition().x - (width / 2f),
-                body.getPosition().y - (height / 2f),
-                width,
+                body.getPosition().x / SCALE - (width / 2f),
+                body.getPosition().y / SCALE - (height / 2f),
+                width ,
                 height);
     }
 
@@ -45,12 +47,20 @@ public class GameObject {
 
     }
 
+    public float getX() {
+        return body.getPosition().x / SCALE;
+    }
+
+    public float getY() {
+        return body.getPosition().y / SCALE;
+    }
+
     public void setX(float x) {
-        body.setTransform(x, body.getPosition().y, 0);
+        body.setTransform(x * SCALE, body.getPosition().y, 0);
     }
 
     public void setY(float y) {
-        body.setTransform(body.getPosition().x, y, 0);
+        body.setTransform(body.getPosition().x, y * SCALE, 0);
     }
 
     private Body createBody(float x, float y, World world) {
@@ -60,7 +70,7 @@ public class GameObject {
         Body body = world.createBody(def);
 
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(Math.max(width, height) / 2f);
+        circleShape.setRadius(Math.max(width, height) * SCALE / 2f);
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;

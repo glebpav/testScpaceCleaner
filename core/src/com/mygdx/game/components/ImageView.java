@@ -19,8 +19,8 @@ public class ImageView {
         this.x = x;
         this.y = y;
         texture = new Texture(imagePath);
-        this.width = texture.getWidth() * SCALE;
-        this.height = texture.getHeight() * SCALE;
+        this.width = texture.getWidth() ;
+        this.height = texture.getHeight() ;
     }
 
     public void draw(SpriteBatch batch) {

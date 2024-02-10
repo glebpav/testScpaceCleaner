@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.screens.MenuScreen;
 
 import static com.mygdx.game.GameSettings.*;
 
@@ -31,6 +32,7 @@ public class MyGdxGame extends Game {
     public BitmapFont commonBlackFont;
 
     public GameScreen gameScreen;
+    public MenuScreen menuScreen;
 
     @Override
     public void create() {
@@ -39,20 +41,19 @@ public class MyGdxGame extends Game {
         debugRenderer = new Box2DDebugRenderer();
         world = new World(new Vector2(0, 0), true);
 
-        largeWhiteFont = FontBuilder.generate(200, Color.WHITE, "spaceagecyrillic_regular.ttf");
-        commonWhiteFont = FontBuilder.generate(100, Color.WHITE, "spaceagecyrillic_regular.ttf");
-        commonBlackFont = FontBuilder.generate(100, Color.BLACK, "spaceagecyrillic_regular.ttf");
+        largeWhiteFont = FontBuilder.generate(48, Color.WHITE, "Montserrat-Bold.ttf");
+        commonWhiteFont = FontBuilder.generate(24, Color.WHITE, "Montserrat-Bold.ttf");
+        commonBlackFont = FontBuilder.generate(24, Color.BLACK, "Montserrat-Bold.ttf");
 
-
-        gameScreen = new GameScreen(this);
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         touch = new Vector3();
-        camera.setToOrtho(false, 720 * SCALE, 1280 * SCALE);
+        camera.setToOrtho(false, 720 , 1280 );
 
+        gameScreen = new GameScreen(this);
+        menuScreen = new MenuScreen(this);
 
-        setScreen(gameScreen);
-
+        setScreen(menuScreen);
 
     }
 

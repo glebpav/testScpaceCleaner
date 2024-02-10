@@ -17,10 +17,10 @@ public class TrashObject extends GameObject {
     public TrashObject(World world) {
         super(
                 "trash1.png",
-                (140 * SCALE / 2) + paddingHorizontal * SCALE +
-                        (new Random()).nextInt((int) (720 - 2 * paddingHorizontal - 140)) * SCALE,
-                1280 * SCALE + 100 * SCALE / 2,
-                140 * SCALE, 100 * SCALE,
+                (140 / 2) + paddingHorizontal +
+                        (new Random()).nextInt((int) (720 - 2 * paddingHorizontal - 140)),
+                1280 + 100 / 2,
+                140, 100,
                 TRASH1_BIT, world);
 
         lifeLeft = 1;

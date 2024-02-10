@@ -1,7 +1,5 @@
 package com.mygdx.game.screens;
 
-import static com.mygdx.game.GameSettings.SCALE;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -44,20 +42,20 @@ public class GameScreen extends ScreenAdapter {
         bulletsArray = new ArrayList<>();
         trashArray = new ArrayList<>();
         gameSession = new GameSession();
-        spaceShip = new SpaceShip((720 / 2f) * SCALE, 150 * SCALE, myGdxGame.world);
+        spaceShip = new SpaceShip((720 / 2f), 150, myGdxGame.world);
 
         contactManager = new ContactManager(myGdxGame.world);
 
-        lifeView = new LifeView(305 * SCALE, 1215 * SCALE);
-        topBlackout = new ImageView(0, 1180 * SCALE, "top_blackout.png");
+        lifeView = new LifeView(305, 1215);
+        topBlackout = new ImageView(0, 1180, "top_blackout.png");
         movingBackgroundView = new MovingBackgroundView("background1.png");
-        scoreTextView = new TextView(myGdxGame.commonWhiteFont, 50 * SCALE, 1215 * SCALE);
-        pauseButton = new TextButtonView(510 * SCALE, 1195 * SCALE, 160 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Pause");
+        scoreTextView = new TextView(myGdxGame.commonWhiteFont, 50, 1215);
+        pauseButton = new TextButtonView(510, 1195, 160, 70, myGdxGame.commonBlackFont, "Pause");
 
         fullBlackoutView = new ImageView(0, 0, "blackout_full.png");
-        pauseTextView = new TextView(myGdxGame.largeWhiteFont, 245 * SCALE,842 * SCALE, "Pause");
-        homeButton = new TextButtonView(138 * SCALE, 695 * SCALE, 200 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Home");
-        continueButton = new TextButtonView(393 * SCALE, 695 * SCALE, 200 * SCALE, 70 * SCALE, myGdxGame.commonBlackFont, "Continue");
+        pauseTextView = new TextView(myGdxGame.largeWhiteFont, 282, 842, "Pause");
+        homeButton = new TextButtonView(138, 695, 200, 70, myGdxGame.commonBlackFont, "Home");
+        continueButton = new TextButtonView(393, 695, 200, 70, myGdxGame.commonBlackFont, "Continue");
     }
 
     @Override
@@ -85,8 +83,8 @@ public class GameScreen extends ScreenAdapter {
 
             if (spaceShip.needToShoot()) {
                 LaserBullet laserBullet = new LaserBullet(
-                        spaceShip.body.getPosition().x,
-                        (spaceShip.body.getPosition().y + spaceShip.height / 2),
+                        spaceShip.getX(),
+                        (spaceShip.getY() + spaceShip.height / 2),
                         myGdxGame.world
                 );
                 bulletsArray.add(laserBullet);
@@ -124,7 +122,12 @@ public class GameScreen extends ScreenAdapter {
 
             if (gameSession.state == GameState.PAUSED) {
                 if (continueButton.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                    System.out.println("continue");
                     gameSession.resumeGame();
+                }
+                if (homeButton.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                    System.out.println("home");
+                    myGdxGame.setScreen(myGdxGame.menuScreen);
                 }
             }
 

@@ -17,7 +17,7 @@ public class FontBuilder {
         parameter.color = color;
         BitmapFont font = generator.generateFont(parameter);
         generator.dispose();
-        font.getData().setScale(SCALE / 4);
+        // font.getData().setScale(SCALE, SCALE);
         return font;
     }
 

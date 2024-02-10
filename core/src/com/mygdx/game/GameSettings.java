@@ -13,7 +13,7 @@ public class GameSettings {
 
 
     public static int SHOOTING_COOL_DOWN = 1000; // in [ms] - milliseconds
-    public static int BULLET_VELOCITY = 20; // in [m/s] - meter per second
+    public static int BULLET_VELOCITY = 200; // in [m/s] - meter per second
 
     public static long STARTING_ENEMY_APPEARANCE_COOL_DOWN = 2000; // in [ms] - milliseconds
 

@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import static com.mygdx.game.GameSettings.SCALE;
-
 public class TextButtonView {
 
     Texture texture;
@@ -49,7 +47,15 @@ public class TextButtonView {
     }
 
     public boolean isHit(float tx, float ty) {
-        return (tx >= x && tx <= tx + width && ty >= y && ty <= y + height);
+        if (tx >= x && tx <= tx + width && ty >= y && ty <= y + height) {
+            System.out.println("tx-" + tx);
+            System.out.println("ty-" + ty);
+            System.out.println("x-" + x);
+            System.out.println("y-" + y);
+            System.out.println("width-" + width);
+            System.out.println("height-" + height);
+        }
+        return (tx >= x && tx <= x + width && ty >= y && ty <= y + height);
     }
 
     public void dispose() {

@@ -10,11 +10,11 @@ public class MovingBackgroundView {
     Texture texture;
 
     float texture1Y, texture2Y;
-    float speed = 0.06f;
+    float speed = 2f;
 
     public MovingBackgroundView(String pathToTexture) {
         texture1Y = 0;
-        texture2Y = 1280 * SCALE;
+        texture2Y = 1280;
         texture = new Texture(pathToTexture);
     }
 
@@ -22,17 +22,17 @@ public class MovingBackgroundView {
         texture1Y -= speed;
         texture2Y -= speed;
 
-        if (texture1Y <= -1280 * SCALE) {
-            texture1Y = 1280 * SCALE;
+        if (texture1Y <= -1280) {
+            texture1Y = 1280;
         }
-        if (texture2Y <= -1280 * SCALE) {
-            texture2Y = 1280 * SCALE;
+        if (texture2Y <= -1280) {
+            texture2Y = 1280;
         }
     }
 
     public void draw(Batch batch) {
-        batch.draw(texture, 0, texture1Y, 720 * SCALE, 1280 * SCALE);
-        batch.draw(texture, 0, texture2Y, 720 * SCALE, 1280 * SCALE);
+        batch.draw(texture, 0, texture1Y, 720, 1280);
+        batch.draw(texture, 0, texture2Y, 720, 1280);
     }
 
     public void dispose() {
