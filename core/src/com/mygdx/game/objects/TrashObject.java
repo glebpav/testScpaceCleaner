@@ -35,4 +35,8 @@ public class TrashObject extends GameObject {
     public boolean isAlive() {
         return lifeLeft > 0;
     }
+
+    public boolean isInFrame() {
+        return getY() + height / 2 > 0;
+    }
 }

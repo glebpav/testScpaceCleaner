@@ -4,6 +4,11 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameSettings {
 
+    // Device settings
+
+    public static final int SCREEN_WIDTH = 720;
+    public static final int SCREEN_HEIGHT = 1280;
+
     // Physics settings
 
     public static final float STEP_TIME = 1f / 60f;
@@ -20,5 +25,7 @@ public class GameSettings {
     public static final short LASER_BULLET_BIT = 8;
     public static final short TRASH1_BIT = 2;
     public static final short SPACE_SHIP_BIT = 4;
+
+    public static final String DEFAULT_USER_NAME = "Maksim";
 
 }

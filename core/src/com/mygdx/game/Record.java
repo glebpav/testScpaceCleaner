@@ -9,4 +9,8 @@ public class Record {
         this.score = score;
         this.userName = userName;
     }
+
+    public Record() {
+
+    }
 }
