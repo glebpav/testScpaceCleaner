@@ -47,4 +47,22 @@ public class MemoryManager {
         return prefs.getString("username", DEFAULT_USER_NAME);
     }
 
+    public static void saveSoundSettings(boolean isOn) {
+        prefs.putBoolean("isSoundOn", isOn);
+        prefs.flush();
+    }
+
+    public static boolean loadIsSoundOn() {
+        return prefs.getBoolean("isSoundOn", true);
+    }
+
+    public static void saveMusicSettings(boolean isOn) {
+        prefs.putBoolean("isMusicOn", isOn);
+        prefs.flush();
+    }
+
+    public static boolean loadIsMusicOn() {
+        return prefs.getBoolean("isMusicOn", true);
+    }
+
 }

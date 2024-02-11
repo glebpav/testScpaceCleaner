@@ -47,14 +47,6 @@ public class TextButtonView {
     }
 
     public boolean isHit(float tx, float ty) {
-        if (tx >= x && tx <= tx + width && ty >= y && ty <= y + height) {
-            System.out.println("tx-" + tx);
-            System.out.println("ty-" + ty);
-            System.out.println("x-" + x);
-            System.out.println("y-" + y);
-            System.out.println("width-" + width);
-            System.out.println("height-" + height);
-        }
         return (tx >= x && tx <= x + width && ty >= y && ty <= y + height);
     }
 

@@ -95,6 +95,7 @@ public class GameScreen extends ScreenAdapter {
             if (spaceShip.needToShoot()) {
                 LaserBullet laserBullet = new LaserBullet(spaceShip.getX(), spaceShip.getY() + spaceShip.height / 2, myGdxGame.world);
                 bulletsArray.add(laserBullet);
+                if (myGdxGame.soundManager.isSoundOn) myGdxGame.soundManager.shootSound.play();
             }
 
             if (!spaceShip.isAlive()) {
@@ -113,6 +114,7 @@ public class GameScreen extends ScreenAdapter {
 
             if (!trashArray.get(i).isAlive()) {
                 gameSession.killRegistration();
+                if (myGdxGame.soundManager.isSoundOn) myGdxGame.soundManager.explosionSound.play(0.2f);
             }
 
             if (hasToBeDestroyed) {

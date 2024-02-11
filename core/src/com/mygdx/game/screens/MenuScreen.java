@@ -33,7 +33,7 @@ public class MenuScreen extends ScreenAdapter {
         titleView = new TextView(myGdxGame.largeWhiteFont, 180 , 960 , "Space Cleaner");
         startButtonView = new TextButtonView(140 , 646 , 440 , 70 , myGdxGame.commonBlackFont, "start");
         settingsButtonView = new TextButtonView(140 , 551 , 440 , 70 , myGdxGame.commonBlackFont, "settings");
-        exitButtonView = new TextButtonView(140 , 456 , 440 , 70 , myGdxGame.commonBlackFont, "eixt");
+        exitButtonView = new TextButtonView(140 , 456 , 440 , 70 , myGdxGame.commonBlackFont, "exit");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     private void handleInput() {
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
             myGdxGame.touch = myGdxGame.camera.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (startButtonView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
@@ -65,6 +65,9 @@ public class MenuScreen extends ScreenAdapter {
             }
             if (exitButtonView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
                 Gdx.app.exit();
+            }
+            if (settingsButtonView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
+                myGdxGame.setScreen(myGdxGame.settingsScreen);
             }
         }
     }

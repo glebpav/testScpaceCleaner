@@ -10,8 +10,11 @@ public class TextView {
     float x;
     float y;
 
-    BitmapFont font;
-    String text;
+    private float width;
+    private float height;
+
+    private BitmapFont font;
+    private String text;
 
     public TextView(BitmapFont font, float x, float y) {
         this.font = font;
@@ -22,6 +25,14 @@ public class TextView {
     public TextView(BitmapFont font, float x, float y, String text) {
         this(font, x, y);
         this.text = text;
+
+        GlyphLayout glyphLayout = new GlyphLayout(font, text);
+        width = glyphLayout.width;
+        height = glyphLayout.height;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void draw(String text, SpriteBatch batch) {
@@ -30,8 +41,11 @@ public class TextView {
     }
 
     public void draw(SpriteBatch batch) {
-        GlyphLayout glyphLayout = new GlyphLayout(font, text);
-        font.draw(batch, text, x, y + glyphLayout.height);
+        font.draw(batch, text, x, y + height);
+    }
+
+    public boolean isHit(float tx, float ty) {
+        return tx >= x && tx <= x + width && ty >= y && ty <= y + height;
     }
 
     public void dispose() {

@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.screens.MenuScreen;
+import com.mygdx.game.screens.SettingsScreen;
 
 import static com.mygdx.game.GameSettings.*;
 
@@ -22,6 +23,7 @@ public class MyGdxGame extends Game {
 
     public SpriteBatch batch;
     public OrthographicCamera camera;
+    public SoundManager soundManager;
 
     public Vector3 touch;
     public World world;
@@ -33,6 +35,7 @@ public class MyGdxGame extends Game {
 
     public GameScreen gameScreen;
     public MenuScreen menuScreen;
+    public SettingsScreen settingsScreen;
 
     @Override
     public void create() {
@@ -49,9 +52,11 @@ public class MyGdxGame extends Game {
         camera = new OrthographicCamera();
         touch = new Vector3();
         camera.setToOrtho(false, 720 , 1280 );
+        soundManager = new SoundManager();
 
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);
+        settingsScreen = new SettingsScreen(this);
 
         setScreen(menuScreen);
 
