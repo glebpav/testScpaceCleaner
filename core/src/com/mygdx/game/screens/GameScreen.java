@@ -70,12 +70,20 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void restartGame() {
+
+        for (int i = 0; i < trashArray.size(); i++) {
+            myGdxGame.world.destroyBody(trashArray.get(i).body);
+            trashArray.remove(i--);
+        }
+
+        if (spaceShip != null) {
+            myGdxGame.world.destroyBody(spaceShip.body);
+        }
+
         spaceShip = new SpaceShip((GameSettings.SCREEN_WIDTH / 2f), 150, myGdxGame.world);
         bulletsArray.clear();
-        trashArray.clear();
         gameSession.startGame();
     }
-
 
     @Override
     public void render(float delta) {
