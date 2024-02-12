@@ -5,11 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.ContactManager;
-import com.mygdx.game.GameSession;
-import com.mygdx.game.GameState;
-import com.mygdx.game.MemoryManager;
-import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.*;
 import com.mygdx.game.components.*;
 import com.mygdx.game.objects.LaserBullet;
 import com.mygdx.game.objects.SpaceShip;
@@ -40,7 +36,6 @@ public class GameScreen extends ScreenAdapter {
     RecordsListView recordsListView;
     TextButtonView homeButton2;
 
-
     ContactManager contactManager;
 
     public GameScreen(MyGdxGame myGdxGame) {
@@ -48,7 +43,6 @@ public class GameScreen extends ScreenAdapter {
         bulletsArray = new ArrayList<>();
         trashArray = new ArrayList<>();
         gameSession = new GameSession();
-        spaceShip = new SpaceShip((720 / 2f), 150, myGdxGame.world);
 
         contactManager = new ContactManager(myGdxGame.world);
 
@@ -66,11 +60,19 @@ public class GameScreen extends ScreenAdapter {
         recordsListView = new RecordsListView(myGdxGame.commonWhiteFont, 690);
         recordsTextView = new TextView(myGdxGame.largeWhiteFont, 206, 842, "Last records");
         homeButton2 = new TextButtonView(280, 365, 160, 70, myGdxGame.commonBlackFont, "Home");
+
+        restartGame();
     }
 
     @Override
     public void show() {
-        System.out.println("start session");
+        restartGame();
+    }
+
+    private void restartGame() {
+        spaceShip = new SpaceShip((GameSettings.SCREEN_WIDTH / 2f), 150, myGdxGame.world);
+        bulletsArray.clear();
+        trashArray.clear();
         gameSession.startGame();
     }
 

@@ -3,6 +3,7 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.objects.GameObject;
 
 import static com.mygdx.game.GameSettings.*;
@@ -19,6 +20,6 @@ public class LaserBullet extends GameObject {
     }
 
     public boolean hasToBeDestroyed() {
-        return wasHit || getY() - height / 2 > 1280;
+        return wasHit || getY() - height / 2 > GameSettings.SCREEN_HEIGHT;
     }
 }

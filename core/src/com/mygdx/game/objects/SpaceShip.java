@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.GameSettings;
 import com.mygdx.game.objects.GameObject;
 
 public class SpaceShip extends GameObject {
@@ -48,8 +49,8 @@ public class SpaceShip extends GameObject {
     }
 
     private void putInFrame() {
-        if (getY() > (1280 / 2f - height / 2f)) {
-            setY((1280 / 2f - height / 2f));
+        if (getY() > (GameSettings.SCREEN_HEIGHT / 2f - height / 2f)) {
+            setY((GameSettings.SCREEN_HEIGHT / 2f - height / 2f));
         }
 
         if (getY() <= (height / 2f) ) {
@@ -57,10 +58,10 @@ public class SpaceShip extends GameObject {
         }
 
         if (getX() < (- width / 2f)) {
-            setX(720);
+            setX(GameSettings.SCREEN_WIDTH);
         }
 
-        if (getX() > (720 + width / 2f)) {
+        if (getX() > (GameSettings.SCREEN_WIDTH + width / 2f)) {
             setX(0);
         }
     }

@@ -1,11 +1,10 @@
 package com.mygdx.game.objects;
 
 import static com.mygdx.game.GameSettings.TRASH1_BIT;
-import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.objects.GameObject;
+import com.mygdx.game.GameSettings;
 
 import java.util.Random;
 
@@ -18,8 +17,8 @@ public class TrashObject extends GameObject {
         super(
                 "trash1.png",
                 (140 / 2) + paddingHorizontal +
-                        (new Random()).nextInt((int) (720 - 2 * paddingHorizontal - 140)),
-                1280 + 100 / 2,
+                        (new Random()).nextInt((int) (GameSettings.SCREEN_WIDTH - 2 * paddingHorizontal - 140)),
+                GameSettings.SCREEN_HEIGHT + 100 / 2,
                 140, 100,
                 TRASH1_BIT, world);
 

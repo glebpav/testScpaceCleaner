@@ -23,7 +23,6 @@ public class GameSession {
         kills = 0;
         sessionStartTime = TimeUtils.millis();
         nextEnemySpawnTime = sessionStartTime + (long) (STARTING_ENEMY_APPEARANCE_COOL_DOWN * getEnemyPeriodCoolDown());
-        System.out.println((TimeUtils.millis() - sessionStartTime) / 1000f + " --- " + (nextEnemySpawnTime - TimeUtils.millis()) + " --- " + (STARTING_ENEMY_APPEARANCE_COOL_DOWN * getEnemyPeriodCoolDown()));
     }
 
     public void killRegistration() {

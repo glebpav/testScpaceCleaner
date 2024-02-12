@@ -4,6 +4,7 @@ import static com.mygdx.game.GameSettings.SCALE;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.mygdx.game.GameSettings;
 
 public class MovingBackgroundView {
 
@@ -14,7 +15,7 @@ public class MovingBackgroundView {
 
     public MovingBackgroundView(String pathToTexture) {
         texture1Y = 0;
-        texture2Y = 1280;
+        texture2Y = GameSettings.SCREEN_HEIGHT;
         texture = new Texture(pathToTexture);
     }
 
@@ -22,17 +23,17 @@ public class MovingBackgroundView {
         texture1Y -= speed;
         texture2Y -= speed;
 
-        if (texture1Y <= -1280) {
-            texture1Y = 1280;
+        if (texture1Y <= -GameSettings.SCREEN_HEIGHT) {
+            texture1Y = GameSettings.SCREEN_HEIGHT;
         }
-        if (texture2Y <= -1280) {
-            texture2Y = 1280;
+        if (texture2Y <= -GameSettings.SCREEN_HEIGHT) {
+            texture2Y = GameSettings.SCREEN_HEIGHT;
         }
     }
 
     public void draw(Batch batch) {
-        batch.draw(texture, 0, texture1Y, 720, 1280);
-        batch.draw(texture, 0, texture2Y, 720, 1280);
+        batch.draw(texture, 0, texture1Y, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
+        batch.draw(texture, 0, texture2Y, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
     }
 
     public void dispose() {
