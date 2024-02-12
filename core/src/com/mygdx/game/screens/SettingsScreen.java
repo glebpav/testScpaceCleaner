@@ -55,7 +55,6 @@ public class SettingsScreen extends ScreenAdapter {
         titleTextView.draw(myGdxGame.batch);
         blackoutImageView.draw(myGdxGame.batch);
         returnButton.draw(myGdxGame.batch);
-        ;
         musicSettingView.draw(myGdxGame.batch);
         soundSettingView.draw(myGdxGame.batch);
         clearSettingView.draw(myGdxGame.batch);
@@ -77,10 +76,12 @@ public class SettingsScreen extends ScreenAdapter {
             if (musicSettingView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
                 MemoryManager.saveMusicSettings(!MemoryManager.loadIsMusicOn());
                 musicSettingView.setText("music: " + translateStateToText(MemoryManager.loadIsMusicOn()));
+                myGdxGame.soundManager.updateMusicFlag();
             }
             if (soundSettingView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
                 MemoryManager.saveSoundSettings(!MemoryManager.loadIsSoundOn());
                 soundSettingView.setText("sound: " + translateStateToText(MemoryManager.loadIsSoundOn()));
+                myGdxGame.soundManager.updateSoundFlag();
             }
         }
     }

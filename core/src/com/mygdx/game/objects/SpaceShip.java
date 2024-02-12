@@ -20,7 +20,7 @@ public class SpaceShip extends GameObject {
 
     public SpaceShip(float x, float y, World world) {
         super("ship.png", x, y, 150, 150, SPACE_SHIP_BIT, world);
-        body.setLinearDamping(2);
+        body.setLinearDamping(3);
         lifeLeft = 3;
         lastShotTime = TimeUtils.millis();
     }
