@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.MemoryManager;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Record;
 import com.mygdx.game.components.ImageView;
 import com.mygdx.game.components.MovingBackgroundView;
 import com.mygdx.game.components.TextButtonView;
@@ -70,7 +69,7 @@ public class SettingsScreen extends ScreenAdapter {
                 myGdxGame.setScreen(myGdxGame.menuScreen);
             }
             if (clearSettingView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {
-                MemoryManager.saveTableOfRecords(new ArrayList<Record>());
+                MemoryManager.saveTableOfRecords(new ArrayList<>());
                 clearSettingView.setText("clear records (cleared)");
             }
             if (musicSettingView.isHit(myGdxGame.touch.x, myGdxGame.touch.y)) {

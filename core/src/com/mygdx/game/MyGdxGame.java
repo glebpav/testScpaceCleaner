@@ -51,7 +51,7 @@ public class MyGdxGame extends Game {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         touch = new Vector3();
-        camera.setToOrtho(false, GameSettings.SCREEN_WIDTH , GameSettings.SCREEN_HEIGHT );
+        camera.setToOrtho(false, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
         soundManager = new SoundManager();
 
         gameScreen = new GameScreen(this);

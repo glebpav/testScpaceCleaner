@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class MemoryManager {
 
-    private static final Preferences prefs = Gdx.app.getPreferences("User saves");
+    private static final Preferences preferences = Gdx.app.getPreferences("User saves");
 
-    public static void saveTableOfRecords(ArrayList<Record> table) {
+    public static void saveTableOfRecords(ArrayList<Integer> table) {
 
         Json json = new Json();
         String tableInString = json.toJson(table);
@@ -20,49 +20,40 @@ public class MemoryManager {
         // FileHandle file = Gdx.files.local("table.json");
         // file.writeString(tableInString, true);
 
-        prefs.putString("recordsTable", tableInString);
-        prefs.flush();
+        preferences.putString("recordsTable", tableInString);
+        preferences.flush();
     }
 
-    public static ArrayList<Record> loadRecordsTable() {
-        if (!prefs.contains("recordsTable"))
+    public static ArrayList<Integer> loadRecordsTable() {
+        if (!preferences.contains("recordsTable"))
             return null;
 
         // FileHandle file = Gdx.files.local("scores.json");
         // String scores = file.readString();
 
-        String scores = prefs.getString("recordsTable");
+        String scores = preferences.getString("recordsTable");
 
         Json json = new Json();
-        ArrayList<Record> table = json.fromJson(ArrayList.class, scores);
+        ArrayList<Integer> table = json.fromJson(ArrayList.class, scores);
         return table;
     }
 
-    public static void saveUserName(String username) {
-        prefs.putString("username", username);
-        prefs.flush();
-    }
-
-    public static String loadUserName() {
-        return prefs.getString("username", DEFAULT_USER_NAME);
-    }
-
     public static void saveSoundSettings(boolean isOn) {
-        prefs.putBoolean("isSoundOn", isOn);
-        prefs.flush();
+        preferences.putBoolean("isSoundOn", isOn);
+        preferences.flush();
     }
 
     public static boolean loadIsSoundOn() {
-        return prefs.getBoolean("isSoundOn", true);
+        return preferences.getBoolean("isSoundOn", true);
     }
 
     public static void saveMusicSettings(boolean isOn) {
-        prefs.putBoolean("isMusicOn", isOn);
-        prefs.flush();
+        preferences.putBoolean("isMusicOn", isOn);
+        preferences.flush();
     }
 
     public static boolean loadIsMusicOn() {
-        return prefs.getBoolean("isMusicOn", true);
+        return preferences.getBoolean("isMusicOn", true);
     }
 
 }

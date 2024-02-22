@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.GameSettings;
-import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.Record;
 
 import java.util.ArrayList;
 
@@ -24,11 +22,12 @@ public class RecordsListView {
          recordsListString = "";
     }
 
-    public void setRecords(ArrayList<Record> recordsList) {
+    public void setRecords(ArrayList<Integer> recordsList) {
         recordsListString = "";
         int countOfRows = Math.min(recordsList.size(), 5);
         for (int i = recordsList.size() - 1; i >= recordsList.size() - countOfRows; i--) {
-            recordsListString += recordsList.get(i).userName + " - " + recordsList.get(i).score + "\n";
+            System.out.println(recordsList.get(i));
+            recordsListString += (i + 1) + ". - " + recordsList.get(i) + "\n";
         }
 
         GlyphLayout glyphLayout = new GlyphLayout(font, recordsListString);

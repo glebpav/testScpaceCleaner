@@ -48,14 +48,11 @@ public class GameSession {
     public void endGame() {
         updateScore();
         state = GameState.ENDED;
-        ArrayList<Record> recordsTable = MemoryManager.loadRecordsTable();
+        ArrayList<Integer> recordsTable = MemoryManager.loadRecordsTable();
         if (recordsTable == null) {
             recordsTable = new ArrayList<>();
         }
-        recordsTable.add(new Record(getScore(), MemoryManager.loadUserName()));
-
-
-
+        recordsTable.add(getScore());
         MemoryManager.saveTableOfRecords(recordsTable);
     }
 
