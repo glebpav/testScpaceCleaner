@@ -16,10 +16,10 @@ public class RecordsListView {
     String recordsListString;
 
     public RecordsListView(BitmapFont font, float y) {
-         this.y = y;
-         x = 0;
-         this.font = font;
-         recordsListString = "";
+        this.y = y;
+        x = 0;
+        this.font = font;
+        recordsListString = "";
     }
 
     public void setRecords(ArrayList<Integer> recordsList) {

@@ -35,7 +35,7 @@ public class GameObject {
         batch.draw(texture,
                 body.getPosition().x / SCALE - (width / 2f),
                 body.getPosition().y / SCALE - (height / 2f),
-                width ,
+                width,
                 height);
     }
 

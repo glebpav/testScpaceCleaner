@@ -30,10 +30,10 @@ public class MenuScreen extends ScreenAdapter {
         this.myGdxGame = myGdxGame;
 
         backgroundView = new MovingBackgroundView("background1.png");
-        titleView = new TextView(myGdxGame.largeWhiteFont, 180 , 960 , "Space Cleaner");
-        startButtonView = new TextButtonView(140 , 646 , 440 , 70 , myGdxGame.commonBlackFont, "start");
-        settingsButtonView = new TextButtonView(140 , 551 , 440 , 70 , myGdxGame.commonBlackFont, "settings");
-        exitButtonView = new TextButtonView(140 , 456 , 440 , 70 , myGdxGame.commonBlackFont, "exit");
+        titleView = new TextView(myGdxGame.largeWhiteFont, 180, 960, "Space Cleaner");
+        startButtonView = new TextButtonView(140, 646, 440, 70, myGdxGame.commonBlackFont, "start");
+        settingsButtonView = new TextButtonView(140, 551, 440, 70, myGdxGame.commonBlackFont, "settings");
+        exitButtonView = new TextButtonView(140, 456, 440, 70, myGdxGame.commonBlackFont, "exit");
     }
 
     @Override

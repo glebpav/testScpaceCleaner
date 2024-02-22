@@ -16,7 +16,7 @@ public class TrashObject extends GameObject {
     public TrashObject(World world) {
         super(
                 "trash1.png",
-                (140 / 2) + paddingHorizontal +
+                140 / 2 + paddingHorizontal +
                         (new Random()).nextInt((int) (GameSettings.SCREEN_WIDTH - 2 * paddingHorizontal - 140)),
                 GameSettings.SCREEN_HEIGHT + 100 / 2,
                 140, 100,

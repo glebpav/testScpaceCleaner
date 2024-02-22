@@ -19,14 +19,14 @@ public class LifeView {
         this.x = x;
         this.y = y;
         texture = new Texture("life.png");
-        this.width = texture.getWidth() ;
-        this.height = texture.getHeight() ;
+        this.width = texture.getWidth();
+        this.height = texture.getHeight();
     }
 
     public void draw(int leftLive, SpriteBatch batch) {
-        if (leftLive > 0) batch.draw(texture, x + (texture.getWidth() + 6) , y, width, height);
+        if (leftLive > 0) batch.draw(texture, x + (texture.getWidth() + 6), y, width, height);
         if (leftLive > 1) batch.draw(texture, x, y, width, height);
-        if (leftLive > 2) batch.draw(texture, x + 2 * (texture.getWidth() + 6) , y, width, height);
+        if (leftLive > 2) batch.draw(texture, x + 2 * (texture.getWidth() + 6), y, width, height);
     }
 
     public void dispose() {

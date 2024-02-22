@@ -177,7 +177,6 @@ public class GameScreen extends ScreenAdapter {
         }
     }
 
-    @SuppressWarnings("NewApi")
     private void draw() {
 
         myGdxGame.camera.update();
@@ -188,8 +187,10 @@ public class GameScreen extends ScreenAdapter {
 
         movingBackgroundView.draw(myGdxGame.batch);
         spaceShip.draw(myGdxGame.batch);
-        bulletsArray.forEach(laserBullet -> laserBullet.draw(myGdxGame.batch));
-        trashArray.forEach(trashObject -> trashObject.draw(myGdxGame.batch));
+        // bulletsArray.forEach(laserBullet -> laserBullet.draw(myGdxGame.batch));
+        for (LaserBullet bullet : bulletsArray) bullet.draw(myGdxGame.batch);
+        // trashArray.forEach(trashObject -> trashObject.draw(myGdxGame.batch));
+        for (TrashObject trash : trashArray) trash.draw(myGdxGame.batch);
         topBlackout.draw(myGdxGame.batch);
         lifeView.draw(spaceShip.lifeLeft, myGdxGame.batch);
         scoreTextView.draw("Score: " + gameSession.getScore(), myGdxGame.batch);

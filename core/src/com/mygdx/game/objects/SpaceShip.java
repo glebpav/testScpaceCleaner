@@ -53,11 +53,11 @@ public class SpaceShip extends GameObject {
             setY((GameSettings.SCREEN_HEIGHT / 2f - height / 2f));
         }
 
-        if (getY() <= (height / 2f) ) {
+        if (getY() <= (height / 2f)) {
             setY(height / 2);
         }
 
-        if (getX() < (- width / 2f)) {
+        if (getX() < (-width / 2f)) {
             setX(GameSettings.SCREEN_WIDTH);
         }
 
